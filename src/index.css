@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 @import "tailwindcss";
 
 @theme{
     --font-poppins: 'Poppins', sans-serif;
+    --font-roboto: 'Roboto', sans-serif;
 }
 
 @layer base {
     body {
-        @apply font-sans bg-blue-50 text-gray-900 antialiased;
+        @apply bg-blue-50 text-gray-900 antialiased;
     }
 }
 
@@ -17,21 +19,21 @@
         @apply bg-blue-500 hover:bg-blue-700 text-white font-semibold px-5 py-3
                      rounded-xl transition-all duration-200 hover:-translate-y-0.5
                      disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none
-                     flex items-center justify-center gap-2 text-sm;
+                     flex items-center justify-center gap-2 text-sm cursor-pointer;
     }
     .btn-outline {
         @apply bg-white border-2 border-blue-500 text-blue-500
                      hover:bg-blue-50 font-semibold px-5 py-3 rounded-xl
                      transition-all duration-200 hover:-translate-y-0.5
-                     flex items-center justify-center gap-2 text-sm;
+                     flex items-center justify-center gap-2 text-sm cursor-pointer;
     }
     .btn-danger {
         @apply bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2
-                     rounded-lg transition-all duration-200 text-xs;
+                     rounded-lg transition-all duration-200 text-xs cursor-pointer;
     }
     .btn-success {
         @apply bg-green-500 hover:bg-green-600 text-white font-semibold px-5 py-3
-                     rounded-xl transition-all duration-200 flex items-center justify-center gap-2 text-sm;
+                     rounded-xl transition-all duration-200 flex items-center justify-center gap-2 text-sm cursor-pointer;
     }
     .card {
         @apply bg-white border border-purple-100 rounded-2xl p-6;
