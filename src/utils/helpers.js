@@ -1,5 +1,13 @@
-export const initials = (name = '') =>
-    name.trim().split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+export const initials = (name) => {
+    const safeName = String(name || '');
+    return safeName
+        .trim()
+        .split(' ')
+        .map(w => w[0])
+        .join('')
+        .slice(0, 2)
+        .toUpperCase();
+};
 
 export const colorMap = {
     sw1: { bg: '#ede9fe', tc: '#7c3aed' },

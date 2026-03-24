@@ -3,9 +3,98 @@
 
 @import "tailwindcss";
 
-@theme{
+@theme {
     --font-poppins: 'Poppins', sans-serif;
-    --font-roboto: 'Roboto', sans-serif;
+    --font-roboto: 'Roboto', sans-serif; 
+}
+
+@theme {
+    --breakpoint-xs: 375px;   /* small phones */
+    --breakpoint-sm: 640px;   /* large phones */
+    --breakpoint-md: 768px;   /* tablets */
+    --breakpoint-lg: 1024px;  /* small laptops */
+    --breakpoint-xl: 1280px;  /* laptops */
+    --breakpoint-2xl: 1536px; /* large screens */
+}
+
+/* ── Responsive Utilities ───────────────────────── */
+
+/* Bottom nav safe area (iPhone notch) */
+.safe-area-pb {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+/* Mobile: add bottom padding so content isn't hidden behind bottom nav */
+@media (max-width: 639px) {
+  main {
+    padding-bottom: 5rem !important;
+  }
+}
+
+/* Tablet: tighter grid gaps */
+@media (max-width: 1023px) {
+  .card {
+    padding: 1rem 1.25rem;
+  }
+}
+
+/* Smooth sidebar drawer */
+aside {
+  will-change: transform;
+}
+
+/* Table cells — hide on mobile */
+@media (max-width: 639px) {
+  .hide-mobile { display: none !important; }
+}
+
+/* Better touch targets on mobile */
+@media (max-width: 767px) {
+  .btn-primary, .btn-outline, .btn-success, .btn-danger {
+    min-height: 44px;
+  }
+  .input {
+    min-height: 44px;
+  }
+}
+
+@theme{
+    --animate-pulse-slow: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.6);
+            opacity: 0.5;
+        }
+        100%{
+            transform: scale(1);
+            opacity: 1;
+        }
+    }   
+}
+
+@theme{
+    --animate-scan: 'scan 1.5s ease-in-out infinite';
+
+    @keyframes scan {
+        0%   { top: '10%'; opacity: 0; }
+        20%  { opacity: 1; }
+        80%  { opacity: 1; }
+        100% { top: '85%'; opacity: 0; }
+    }
+}
+
+@theme{
+    --animate-pop-in: 'popIn 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+
+    @keyframes popIn{
+        0%   { transform: scale(0.85); opacity: 0; }
+        100% { transform: scale(1);    opacity: 1; }
+    }
 }
 
 @layer base {
@@ -16,50 +105,60 @@
 
 @layer components {
     .btn-primary {
-        @apply bg-blue-500 hover:bg-blue-700 text-white font-semibold px-5 py-3
-                     rounded-xl transition-all duration-200 hover:-translate-y-0.5
-                     disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none
-                     flex items-center justify-center gap-2 text-sm cursor-pointer;
+        @apply bg-blue-500 hover:bg-blue-700 text-white font-semibold px-5 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 text-sm cursor-pointer;
     }
+
     .btn-outline {
-        @apply bg-white border-2 border-blue-500 text-blue-500
-                     hover:bg-blue-50 font-semibold px-5 py-3 rounded-xl
-                     transition-all duration-200 hover:-translate-y-0.5
-                     flex items-center justify-center gap-2 text-sm cursor-pointer;
+        @apply bg-white border-2 border-blue-500 text-blue-500 hover:bg-blue-50 font-semibold px-5 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 flex items-center justify-center gap-2 text-sm cursor-pointer;
     }
+
     .btn-danger {
-        @apply bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2
-                     rounded-lg transition-all duration-200 text-xs cursor-pointer;
+        @apply bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded-lg transition-all duration-200 text-xs cursor-pointer;
     }
+
     .btn-success {
-        @apply bg-green-500 hover:bg-green-600 text-white font-semibold px-5 py-3
-                     rounded-xl transition-all duration-200 flex items-center justify-center gap-2 text-sm cursor-pointer;
+        @apply bg-green-500 hover:bg-green-600 text-white font-semibold px-5 py-3 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 text-sm cursor-pointer;
     }
+
     .card {
         @apply bg-white border border-purple-100 rounded-2xl p-6;
     }
+
     .input {
-        @apply w-full px-4 py-3 border-2 border-purple-100 rounded-xl text-sm
-                     font-sans text-gray-900 outline-none transition-colors duration-200
-                     focus:border-blue-500 bg-white;
+        @apply w-full px-4 py-3 border-2 border-purple-100 rounded-xl text-sm font-sans text-gray-900 outline-none transition-colors duration-200 focus:border-blue-500 bg-white;
     }
+
     .label {
         @apply block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide;
     }
+
     .badge {
         @apply inline-flex items-center gap-1 text-xs font-semibold px-3 py-1 rounded-full;
     }
+
     .tag {
-        @apply inline-block text-xs font-semibold px-2.5 py-1 rounded-full
-                     bg-blue-100 text-blue-600 border border-blue-200;
+        @apply inline-block text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-100 text-blue-600 border border-blue-200;
     }
-    .status-voted { @apply bg-green-100 text-green-700; }
-    .status-pending { @apply bg-amber-100 text-amber-700; }
-    .status-flagged { @apply bg-red-100 text-red-700; }
-    .status-fp { @apply bg-purple-100 text-purple-700; }
+
+    .status-voted {
+        @apply bg-green-100 text-green-700;
+    }
+
+    .status-pending {
+        @apply bg-amber-100 text-amber-700;
+    }
+
+    .status-flagged {
+        @apply bg-red-100 text-red-700;
+    }
+
+    .status-fp {
+        @apply bg-purple-100 text-purple-700;
+    }
 }
 
 @layer utilities {
+
     /* Fingerprint scan line animation */
     .fp-scan-line {
         position: absolute;
@@ -81,11 +180,23 @@
 }
 
 @keyframes fpScan {
-    0% { top: 10%; }
-    100% { top: 88%; }
+    0% {
+        top: 10%;
+    }
+
+    100% {
+        top: 88%;
+    }
 }
 
 @keyframes fpPulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(93, 83, 207, 0.3); }
-    50% { box-shadow: 0 0 0 14px rgba(93, 83, 207, 0); }
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(93, 83, 207, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 0 14px rgba(93, 83, 207, 0);
+    }
 }
