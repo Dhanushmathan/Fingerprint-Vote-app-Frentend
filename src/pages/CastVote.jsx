@@ -182,10 +182,10 @@ const CaseVote = () => {
 
   return (
     <div>
-      <h2 className='text-2xl font-bold text-gray-900'>Cast Your Vote</h2>
+      <h2 className='text-xl md:text-2xl font-bold text-gray-900'>Cast Your Vote</h2>
       <p className='text-sm text-gray-400 mt-1 mb-7'>One person · One vote · Ward 7 Municipal Council Election 2025</p>
 
-      <div className='grid grid-cols-[1fr_300px] gap-6 items-start'>
+      <div className='grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6 items-start'>
 
         {/* Candidates List */}
         <div>
@@ -213,7 +213,7 @@ const CaseVote = () => {
             )
           }
 
-          <div className="mt-4 bg-white border border-purple-100 rounded-2xl px-6 py-4 flex items-center gap-4">
+          <div className="mt-4 bg-white border border-purple-100 rounded-2xl px-4 md:px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
             <div className="flex-1">
               <p className="text-sm font-semibold text-gray-900">
                 {verifiedVoter?.hasVoted
@@ -231,7 +231,7 @@ const CaseVote = () => {
               </p>
             </div>
             <button
-              className="btn-primary whitespace-nowrap"
+              className="btn-primary whitespace-nowrap w-full sm:w-auto"
               disabled={!selectedCand || step < STEP.FP_VERIFIED || verifiedVoter?.hasVoted || castVoteMut.isPending}
               onClick={() => setShowConfirm(true)}
             >

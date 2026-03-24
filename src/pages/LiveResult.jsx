@@ -28,7 +28,7 @@ const LiveResult = () => {
     <div>
       <div className='flex items-center justify-between mb-7'>
         <div>
-          <h2 className='text-2xl font-bold text-gray-900'>Live Results</h2>
+          <h2 className='text-xl md:text-2xl font-bold text-gray-900'>Live Results</h2>
           <p className='text-sm text-gray-400 mt-1'>Real-time vote count · Auto-refreshes every 10s</p>
         </div>
         <div className='flex items-center gap-2 badge bg-red-100 text-red-600 px-3 py-1.5'>
@@ -36,7 +36,7 @@ const LiveResult = () => {
         </div>
       </div>
 
-      <div className='grid grid-cols-4 gap-4 mb-7'>
+      <div className='grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4 mb-7'>
         {[
           { icon: TrendingUp, label: 'Total Votes', value: total, color: 'text-blue-500' },
           { icon: Users, label: 'Voter Turnout', value: `${result.turnoutPercentage || 0}%`, color: 'text-blue-500' },
@@ -64,7 +64,7 @@ const LiveResult = () => {
             <p className='text-sm text-gray-400'>Results will appear here once votes are cast.</p>
           </div>
         ) : (
-          <div className='grid grid-cols-[2fr_1fr] gap-6'>
+          <div className='grid grid-cols-1 xl:grid-cols-[2fr_1fr] gap-6'>
             <div className='flex flex-col gap-3'>
               {rankings.map((c, i) => {
                 const col = colorMap[c.partyColorTheme] || colorMap.sw1;

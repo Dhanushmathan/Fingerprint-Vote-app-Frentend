@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect } from 'react'
 import { voteAPI, voterAPI } from '../services/api';
-import Toogle from '../components/Toggle';
 import Toggle from '../components/Toggle';
 
 const AdminPanel = () => {
@@ -36,10 +35,10 @@ const AdminPanel = () => {
 
   return (
     <div>
-      <h2 className='text-2xl font-bold text-gray-900'>Admin Panel</h2>
+      <h2 className='text-xl md:text-2xl font-bold text-gray-900'>Admin Panel</h2>
       <p className='text-sm text-gray-400 mt-1 mb-7'>Election management and voter activity log</p>
 
-      <div className='flex flex-col gap-1.5'>
+      <div className='grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4 mb-6'>
         {
           stats.map(s => (
             <div key={s.label} className='card'>
@@ -50,9 +49,9 @@ const AdminPanel = () => {
         }
       </div>
 
-      <div className='grid grid-cols-[1fr_300px] gap-6'>
-        <div className='bg-white border border-purple-100 rounded-2xl overflow-hidden'>
-          <div className='grid grid-cols-[28px_1fr_140px_100px_100px] px-5 py-3
+      <div className='grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-5'>
+        {/* <div className='bg-white border border-purple-100 rounded-2xl overflow-hidden'>
+          <div className='grid grid-cols-[20px_1fr_80px] sm:grid-cols-[28px_1fr_140px_100px_100px] px-3 sm:px-5 py-3
                           bg-blue-50 border-b border-purple-100
                           text-[12px] font-extrabold text-gray-500 uppercase tracking-widest'>
             <div />
@@ -69,14 +68,14 @@ const AdminPanel = () => {
                   .slice()
                   .sort((a, b) => (b.votedAt || '').localeCompare(a.votedAt || ''))
                   .map(v => (
-                    <div key={v.id} className='grid grid-cols-[28px_1fr_140px_100px_100px] px-5 py-3.5
+                    <div key={v.id} className='grid grid-cols-[20px_1fr_80px] sm:grid-cols-[28px_1fr_140px_100px_100px] px-3 sm:px-5 py-3.5
                              border-b border-purple-50 last:border-0 items-center
                              hover:bg-blue-50/40 transition-colors'>
                       <div className={`w-2 h-2 rounded-full ${v.hasVoted ? 'bg-green-500' : 'bg-amber-400'
                         }`} />
                       <div>
                         <p className='text-sm font-medium text-gray-900'>{v.voterId}</p>
-                        <p className='text-xs text-gray-400'>
+                        <p className='text-[10px] text-gray-400'>
                           {v.hasVoted ? `Voted for ${v.votedForCandidateName}` : 'Not yet voted'}
                         </p>
                       </div>
@@ -101,7 +100,75 @@ const AdminPanel = () => {
                   ))
               )
           }
+        </div> */}
+
+        <div className='bg-white border border-purple-100 rounded-2xl overflow-hidden'>
+          {/* Header: Desktop-la mattum grid display panna pothum */}
+          <div className='hidden sm:grid sm:grid-cols-[28px_1fr_140px_100px_100px] px-5 py-3 
+                  bg-blue-50 border-b border-purple-100 
+                  text-[12px] font-extrabold text-gray-500 uppercase tracking-widest'>
+            <div />
+            <div>Voter ID</div>
+            <div>Auth Method</div>
+            <div>Time</div>
+            <div>Status</div>
+          </div>
+
+          {voters.length === 0 ? (
+            <div className='text-center py-12 text-sm text-gray-400'>No voter activity yet</div>
+          ) : (
+            voters
+              .slice()
+              .sort((a, b) => (b.votedAt || '').localeCompare(a.votedAt || ''))
+              .map((v) => (
+                <div key={v.id}
+                  className='flex flex-col sm:grid sm:grid-cols-[28px_1fr_140px_100px_100px] 
+                        px-4 sm:px-5 py-4 sm:py-3.5 
+                        border-b border-purple-50 last:border-0 
+                        hover:bg-blue-50/40 transition-colors relative'>
+
+                  {/* Status Dot - Mobile-la absolute-a vetchikalam for cleaner look */}
+                  <div className={`w-2 h-2 rounded-full absolute left-4 top-5 sm:static ${v.hasVoted ? 'bg-green-500' : 'bg-amber-400'
+                    }`} />
+
+                  {/* Voter Info Section */}
+                  <div className="pl-6 sm:pl-0">
+                    <p className='text-sm font-bold text-gray-900'>{v.voterId}</p>
+                    <p className='text-[11px] text-gray-500'>
+                      {v.hasVoted ? `Voted for ${v.votedForCandidateName}` : 'Not yet voted'}
+                    </p>
+                  </div>
+
+                  {/* Auth, Time, Status Wrapper for Mobile spacing */}
+                  <div className="flex flex-wrap items-center justify-between gap-3 mt-3 ml-6 sm:mt-0 sm:ml-0 sm:contents">
+                    {/* Auth Method */}
+                    <div className="order-2 sm:order-0">
+                      <span className={`px-2 py-1 rounded text-[10px] font-bold whitespace-nowrap ${v.fingerprintEnrolled ? 'bg-purple-100 text-purple-700' : 'bg-red-100 text-red-600'
+                        }`}>
+                        {v.fingerprintEnrolled ? '🫆 Enrolled' : '⚠️ No FP'}
+                      </span>
+                    </div>
+
+                    {/* Time */}
+                    <div className='text-xs text-gray-400 order-1 sm:order-0'>
+                      {v.votedAt ? new Date(v.votedAt).toLocaleTimeString('en-IN', {
+                        hour: '2-digit', minute: '2-digit', second: '2-digit'
+                      }) : '—'}
+                    </div>
+
+                    {/* Status Badge */}
+                    <div className="order-3 sm:order-0">
+                      {v.hasVoted ?
+                        <span className='px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-[10px] font-semibold'>Voted</span> :
+                        <span className='px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 text-[10px] font-semibold'>Pending</span>
+                      }
+                    </div>
+                  </div>
+                </div>
+              ))
+          )}
         </div>
+
 
         {/* Controlers */}
         <div className='bg-white border border-purple-100 rounded-2xl overflow-hidden'>

@@ -100,13 +100,13 @@ const VoterRegistration = () => {
 
     return (
         <div>
-            <h2 className='text-2xl font-black text-gray-900'>Voter Registration</h2>
+            <h2 className='text-xl md:text-2xl font-black text-gray-900'>Voter Registration</h2>
             <p className="text-sm text-gray-400 mt-1 mb-7">
                 Register eligible voters for the Municipal Council Election 2026.
             </p>
 
             {/* Stats row */}
-            <div className='grid grid-cols-3 gap-4 mb-7'>
+            <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 mb-7'>
                 {[
                     { label: 'Total Registered', value: voters.length, color: 'text-blue-500' },
                     { label: 'Already Voted', value: voted, color: 'text-green-500' },
@@ -119,7 +119,7 @@ const VoterRegistration = () => {
                 ))}
             </div>
 
-            <div className="grid grid-cols-[1fr_400px] gap-6 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-6 items-start">
 
                 {/* ── Left: Registered voters list ── */}
                 <div>
@@ -145,7 +145,7 @@ const VoterRegistration = () => {
                             </div>
                         ) : (
                             <div className='bg-white border border-purple-100 rounded-2xl overflow-hidden'>
-                                <div className="grid grid-cols-[36px_1fr_130px_100px] px-5 py-3
+                                <div className="grid grid-cols-[28px_1fr_80px] sm:grid-cols-[36px_1fr_130px_100px] px-3 sm:px-5 py-3
                               bg-blue-50 border-b border-purple-100
                               text-[10px] font-black text-gray-400 uppercase tracking-widest">
                                     <div />
@@ -156,7 +156,7 @@ const VoterRegistration = () => {
 
                                 {
                                     voters.map(v => (
-                                        <div key={v.id} className='grid grid-cols-[36px_1fr_130px_100px] px-5 py-3.5
+                                        <div key={v.id} className='grid grid-cols-[28px_1fr_80px] sm:grid-cols-[36px_1fr_130px_100px] px-3 sm:px-5 py-3.5
                              border-b border-purple-50 last:border-0 items-center
                              hover:bg-blue-50/40 transition-colors'>
                                             <div className='w-7 h-7 rounded-lg bg-blue-100 flex items-center justify-center

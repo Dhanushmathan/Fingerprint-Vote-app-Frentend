@@ -73,10 +73,10 @@ const PartyRegistration = () => {
 
   return (
     <div>
-      <h2 className='text-2xl font-bold text-gray-900'>Party &amp; Candidate Registration</h2>
+      <h2 className='text-xl md:text-2xl font-bold text-gray-900'>Party &amp; Candidate Registration</h2>
       <p className='text-sm text-gray-400 mt-1 mb-7'>Register new political parties and their candidates.</p>
 
-      <div className='grid grid-cols-[1fr_380px] gap-6 items-start'>
+      <div className='grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-6 items-start'>
 
         {/* Left: Registered parties */}
         <div>
@@ -145,7 +145,7 @@ const PartyRegistration = () => {
                 <label className="label">Party Name <span className="text-red-500">*</span></label>
                 <input className="input" placeholder="e.g. Progressive Alliance" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
               </div>
-              <div className='grid grid-cols-2 gap-3'>
+              <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
                 <div>
                   <label className="label">Party Leader <span className="text-red-500">*</span></label>
                   <input className="input" placeholder="Leader name" value={form.leaderName} onChange={e => setForm(f => ({ ...f, leaderName: e.target.value }))} />
@@ -181,10 +181,10 @@ const PartyRegistration = () => {
 
           {/* Candidate Form */}
           <div className='card mb-4'>
-            <h3 className='text-sm font-black text-gray-900 mb-1'>Add Candidate</h3>
+            <h3 className='text-sm font-extrabold text-gray-900 mb-1'>Add Candidate</h3>
             <p className='text-xs text-gray-400 mb-5 leading-relaxed'>Add the candidate for this party in Ward 7.</p>
 
-            <div className='grid grid-cols-2 gap-3 mb-3'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3'>
               <div>
                 <label className="label">Full Name <span className='text-red-500'>*</span></label>
                 <input className="input" placeholder="Candidate name" value={cand.name} onChange={e => setCand(c => ({ ...c, name: e.target.value }))} onKeyDown={e => e.key === 'Enter' && addCand()} />
