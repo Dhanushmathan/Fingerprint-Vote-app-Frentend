@@ -10,14 +10,14 @@ const Layouts = ({ children }) => {
   const [clock, setClock] = useState('');
 
   const navItems = [
-    { to: '/register', icon: Building2, label: 'Party Registration' },
+    { to: '/register-party', icon: Building2, label: 'Party Registration' },
     { to: '/vote', icon: Vote, label: 'Cast Vote' },
     { to: '/results', icon: BarChart3, label: 'Live Results' },
     { to: '/admin', icon: Settings, label: 'Admin Panel' },
   ]
 
   const pageTitles = {
-    '/register': 'Party Registration',
+    '/register-party': 'Party Registration',
     '/vote': 'Cast Your Vote',
     '/results': 'Live Results',
     '/admin': 'Admin Panel',
