@@ -8,6 +8,9 @@ const api = axios.create({
     headers: { 'Content-Type': 'application/json' },
 });
 
+console.log(import.meta.env.VITE_API_URL, 'API URL');
+
+
 // Response interceptor - handle errors globally
 api.interceptors.response.use(
     res => res,
